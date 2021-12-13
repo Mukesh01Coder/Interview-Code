@@ -1,0 +1,160 @@
+#include<bits/stdc++.h>
+using namespace std;
+class node{
+    public:
+    int data;
+    node* next;
+
+    node(int val){
+        data = val;
+        next = NULL;
+    }
+};
+void insertAtTail(node* &head,int val){
+    node* n = new node(val);
+        if(head == NULL) {
+            head = n; 
+            return;
+        }
+        node* temp = head;
+        while(temp->next!=NULL){
+            temp = temp->next;
+        }
+        temp->next = n;
+}
+void insertAtHead(node* &head,int val){
+       node* n = new node(val);
+        n->next = head;
+        head = n;      
+}
+node* remove_duplicate_unsorted(node* head){
+    set<int>s;
+
+     auto cur = head,pre=cur;
+     while(cur!=NULL){
+         if(s.count(cur->data)){
+            pre->next = cur->next;
+            delete cur;
+         }else{
+             s.insert(cur->data);
+             pre = cur;
+         }
+         cur = pre->next;
+     }
+     return head;
+}
+void sortLinkedList(node* head){
+    node *cur = head, *nextptr;
+    int temp;
+    
+    while(cur!=NULL){
+        nextptr = cur->next;
+        while(nextptr!=NULL){
+            if(cur->data>nextptr->data){
+                temp = cur->data;
+                cur->data = nextptr->data;
+                nextptr->data = temp;
+            }
+            nextptr = nextptr->next;
+
+        }
+        cur = cur->next;
+    }
+     
+}
+node* remove_duplicate_sorted(node* head){
+    node* cur = head;
+    
+    while(cur->next != NULL){
+        if(cur->data == cur->next->data){
+            node* temp = cur->next;
+            cur->next = temp->next;// cur->next->next;
+           
+            delete temp;
+            
+        }else{
+            cur = cur->next;
+        }
+    }
+    return head;
+}
+node* revLinkedList(node* &head){
+     node *prev = NULL;
+     node *cur = head;
+     node *nextptr;
+
+     while(cur!=NULL){
+        nextptr = cur->next;
+        cur->next = prev;
+        prev = cur;
+        cur = nextptr;
+     }
+     return prev;
+}
+bool palindrome(node *head){
+       node* temp = head;
+       stack<int>s;
+       while(temp!=NULL){
+           s.push(temp->data);
+           temp = temp->next;
+       }
+       while(head!=NULL){
+           int x = s.top();
+           s.pop();
+           if(head->data != x) return false;
+           head = head->next;
+       }
+       return true;
+}
+void display(node* head){
+       node* res = head;
+       while(res!=NULL){
+           cout<<res->data<<"->";
+           res = res->next;
+       }
+       cout<<"NULL"<<endl;
+}
+int main(){
+    node* head = NULL;
+    insertAtTail(head,5);
+    insertAtTail(head,3);
+    insertAtTail(head,5);
+    insertAtTail(head,4);
+    insertAtTail(head,1);
+    display(head);
+    insertAtHead(head,3);
+    display(head);
+    node* result = remove_duplicate_unsorted(head);
+    display(result);
+    insertAtHead(head,3);
+    sortLinkedList(head);
+    display(head);
+    node* ans = remove_duplicate_sorted(head);
+    display(ans);
+    node* res = revLinkedList(head);
+    display(res);
+   
+    cout<<palindrome(res)<<endl;
+  /*  node one =   node(5);
+    node two =   node(3);
+    node three = node(1);
+    node four =  node(4);
+    node five =  node(2);
+
+    five.next = NULL;
+    one.next = &two;
+    two.next = &three;
+    three.next = &four;
+    four.next = &five;
+    node* temp = &one;
+       
+    display(&one);
+    sortLinkedList(&one);
+    display(&one);
+    node* res = revLinkedList(&one);
+    display(res);
+   
+    cout<<palindrome(res)<<endl;*/
+
+    return 0;
+}
