@@ -1,1 +1,110 @@
+#include<bits/stdc++.h>
+using namespace std;
+class node{
+    public:
+    int data;
+    node* next;
+    node(int val){
+        data = val;
+        next = NULL;
+    }
+};
+void insertAtTail(node* &head,int val){
+        node* n = new node(val);
+       
+        if(head == NULL) {
+            head = n;
+            return;
+        }
+         node* cur = head;
+        while(cur->next!= NULL) cur = cur->next;
+        cur->next = n;
+}
+void insertAtHead(node* &head,int val){
+     node* n = new node(val);
 
+     n->next = head;
+     head = n;
+}
+void display(node* head){
+    node* cur = head;
+    while(cur!=NULL){
+      cout<<cur->data<<"->";
+      cur = cur->next;
+    }
+    cout<<"NULL"<<endl;
+}
+node* mergetwoLinkedlist_Sorted(node* &head1,node* &head2){
+  //using recursion method
+   node* result = NULL;
+   if(head1 == NULL) return head2;
+   if(head2 == NULL) return head1;
+
+    if(head1->data<head2->data){
+        result = head1;
+        result->next = mergetwoLinkedlist_Sorted(head1->next,head2);
+    }else{
+        result = head2;
+        result->next = mergetwoLinkedlist_Sorted(head1,head2->next);
+    }
+  
+   return result;
+   //using iterator method
+   // node* temp1 = head1;
+    //node* temp2 = head2;
+
+   // node* dummyNode = new node(-1);
+    //node* cur = dummyNode;
+    
+   /* while(temp1!=NULL && temp2!=NULL){
+       if(temp1->data<temp2->data){
+           cur->next = temp1;
+           temp1 = temp1->next;
+           cur = cur->next;
+       }else{
+           cur->next = temp2;
+           temp2 = temp2->next;
+           cur = cur->next;
+       }
+    }
+    while(temp1!=NULL){
+        cur->next = temp1;
+        temp1 = temp1->next;
+        cur = cur->next;
+
+    }
+     while(temp2!=NULL){
+        cur->next = temp2;
+        temp2 = temp2->next;
+        cur = cur->next;
+
+    }
+    return dummyNode->next;*/
+}
+int main(){
+    node* head1 = NULL;
+
+    insertAtTail(head1,2);
+    insertAtTail(head1,3);
+    insertAtTail(head1,4);
+    insertAtTail(head1,5);
+    insertAtTail(head1,6);
+    insertAtHead(head1,1);
+
+    display(head1);
+
+    node* head2 = NULL;
+    insertAtTail(head2,8);
+    insertAtTail(head2,9);
+    insertAtTail(head2,10);
+    insertAtTail(head2,11);
+    insertAtTail(head2,12);
+
+    insertAtHead(head2,7);
+
+    display(head2);
+    node* head3 = mergetwoLinkedlist_Sorted(head1,head2);
+
+    display(head3);
+    return 0;
+}
