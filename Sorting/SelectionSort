@@ -1,1 +1,25 @@
-
+#include<bits/stdc++.h>
+using namespace std;
+void swap(int &x,int &y){
+    int temp = x;
+        x = y;
+        y = temp;
+}
+int main(){
+    int n; cin>>n;
+    int a[n];
+   // 5 3 1 4 7 6
+    for(int i=0;i<n;i++) cin>>a[i];
+    int s=0;
+   while(s<n-1){
+       int minidx = s;
+        for(int e=s+1;e<n;e++){
+           if(a[e]<a[minidx]) minidx = e;
+        }
+        swap(a[minidx],a[s]);
+        s++;
+   }
+   for(int i=0;i<n;i++) cout<<a[i]<<" ";
+    cout<<endl;
+    return 0;
+}
