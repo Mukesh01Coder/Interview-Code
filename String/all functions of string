@@ -1,0 +1,27 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main(){
+    string str1;
+    //cin>>str1;
+   // int n = str1.size();
+    //int n = str.length();
+    getline(cin,str1);   //mukesh kumar lodha
+   // string type string 
+   //like string str;
+   // sort(str.begin(),str.end());
+    reverse(str1.begin(),str1.end());
+   // string substr = str.substr(0,6);
+   // inr loc =  str.find(str1); // str1 = kumar;
+   //string str->str1.append(str2);
+ 
+   //char type string
+   // like char str[50];
+   //cin.getline(str,50);mukesh kumar lodha
+   //strcpy(str1, str2);//Copies string s2 into string s1.
+   // strcat(str1,str2);//Concatenates string str2 onto the end of string str1.
+   //strlen(str1);//Returns the length of string s1.
+   //strcmp(str1, str2);//Returns 0 if str1 and str2 are the same; less than 0 if str1<str2; greater than 0 if str1>str2.
+    cout<<str1<<endl;
+    return 0;
+}
