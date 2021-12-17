@@ -1,0 +1,20 @@
+// 2mukesh 23kumar lodha275
+//1mukesh kumar24 lodha575
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+    string s; getline(cin,s);
+    int n = s.size();
+    int rev = 0, sum =0 ;
+   for(int i=0;i<n;i++){
+        if(s[i]>='0' && s[i]<='9'){
+           rev = rev*10 + (s[i]-'0');
+        }else{
+            sum += rev;
+            rev = 0;
+        }
+   }
+   sum = sum+rev;
+   cout<<sum<<endl;
+   return 0;
+}
