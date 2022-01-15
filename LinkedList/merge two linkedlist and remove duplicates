@@ -1,0 +1,110 @@
+#include<bits/stdc++.h>
+using namespace std;
+class node{
+    public:
+      int data;
+      node* next;
+      
+      node(int val){
+          data = val;
+          next = NULL;
+      }
+};
+/*void remove_duplicat_UnsortedLinkedList(node* &head){
+    node* cur = head;
+    node* temp = cur;
+    set<int>s;
+    
+    while(cur!=NULL){
+        if(s.count(cur->data)) {
+            temp->next = cur->next;
+            delete cur;
+        }else{
+            s.insert(cur->data);
+            temp = cur;
+        }
+        cur =  temp->next;
+    }
+}*/
+/*node* merge(node* head1, node* head2){
+    node* cur1 = head1;
+    node* cur2 = head2;
+    node* dummynode = new node(-1);
+    node* head3=dummynode;
+    
+    while(cur1!=NULL && cur2!=NULL){
+        if(cur1->data<cur2->data){
+            head3->next = cur1;
+            head3 = head3->next;
+            cur1 = cur1->next;
+        }else{
+            head3->next = cur2;
+            head3 = head3->next;
+            cur2 = cur2->next;
+        }
+    }
+    while(cur1!=NULL){
+        head3->next = cur1;
+        head3 = head3->next;
+        cur1 = cur1->next;
+    }
+    while(cur2!=NULL){
+        head3->next = cur2;
+        head3 = head3->next;
+        cur2 = cur2->next;
+    }
+    return dummynode->next;
+}*/
+void remove_duplicat_SortedLinkedList(node* &head){
+    node*  cur = head;
+    node* temp;
+    while(cur->next!=NULL){
+        if(cur->data == cur->next->data){
+            temp = cur->next;
+            cur->next = temp->next;//cur->next->next
+            delete temp;
+        }else cur = cur->next;
+    }
+}
+void display(node* head){
+    node* cur = head;
+    
+    while(cur!=NULL){
+        cout<<cur->data<<"->";
+        cur = cur->next;
+    }
+    cout<<"NULL"<<endl;
+}
+int main(){
+    node* head,*tail;
+    
+    int n,num; cin>>n>>num;
+    
+    head =new node(num); tail=head;
+    
+    for(int i=0;i<n;i++){
+        cin>>num;
+        tail->next = new node(num);
+        tail = tail->next;
+    }
+    display(head);
+    remove_duplicat_SortedLinkedList(head);
+    display(head);
+   // remove_duplicat_UnsortedLinkedList(head);
+    //display(head);
+    /* node* head1,*tail1;
+    
+    int n1,num1; cin>>n1>>num1;
+    
+    head1 =new node(num1); tail1=head1;
+    
+    for(int i=0;i<n1;i++){
+        cin>>num1;
+        tail1->next = new node(num1);
+        tail1 = tail1->next;
+    }
+    display(head1);
+    node *head2 = merge(head,head1);
+    display(head2);*/
+    return 0;
+}
