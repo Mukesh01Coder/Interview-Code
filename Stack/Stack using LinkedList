@@ -1,0 +1,55 @@
+#include<bits/stdc++.h>
+using namespace std;
+class node{
+    public:
+        int data;
+        node* next;
+    node(int val){
+        data = val;
+        next = NULL;
+    }
+};
+class Stack{
+    node* top;
+    public:
+       Stack(){
+           top = NULL;
+       }
+    void push(int val){
+        node* cur = new node(val);
+        cur->next = top;
+        top = cur; 
+    }
+    void pop(){
+        if(top == NULL){
+            cout<<"stack is umderflow"<<endl;
+            return;
+        }
+        cout<<"popped element "<<top->data<<endl;
+        top = top->next;
+    }
+    void display(){
+       
+        if(top==NULL) {
+            cout<<"Stack is empty"<<endl;
+            return;
+        }
+        node* cur = top;
+        while(cur!=NULL) {
+            cout<<cur->data<<" ";
+            cur = cur->next;
+        }
+        cout<<endl;
+    }
+};
+int main(){
+    Stack s;
+    s.push(10);
+    s.push(20);
+    s.push(30);
+    s.push(40);
+    s.display();
+    s.pop();
+    s.display();
+   return 0;
+}
