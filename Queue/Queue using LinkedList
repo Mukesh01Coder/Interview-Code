@@ -1,0 +1,82 @@
+#include<bits/stdc++.h>
+using namespace std;
+class node{
+    public:
+    int data;
+    node* next;
+
+    node(int val){
+      data = val;
+      next = NULL;
+    }
+};
+class Queue{
+    public:
+    node* front;
+    node* rear;
+
+    Queue(){
+       front = NULL;
+       rear = NULL;
+    }
+    void push(int x){
+        node* n = new node(x);
+        if(front == NULL){
+            rear = n;
+            front = n;
+            return;
+        }
+        rear->next = n;
+        rear = rear->next;
+    }
+    void pop(){
+        if(front == NULL){
+            cout<<"Queue is underflow"<<endl;
+            return;
+        }
+        node* todelete = front;
+        front = front->next;
+        delete todelete;
+    }
+    int peek(){
+        if(front == NULL) return -1;
+
+        return front->data;
+    }
+    bool empty(){
+        if(front == NULL) return true;
+        return false;
+    }
+    void display(){
+        node* cur = front;
+
+        while(cur!=NULL){
+            cout<<cur->data<<" ";
+            cur = cur->next;
+        }
+        cout<<endl;
+    }
+};
+int main(){
+    Queue q;
+    q.push(1);
+    q.push(2);
+    q.push(3);
+    q.push(4);
+    q.push(5);
+    q.push(6);
+    q.display();
+    cout<<q.peek()<<endl;
+    q.pop();
+    q.display();
+    cout<<q.empty()<<endl;
+    q.pop();
+    q.pop();
+    q.pop();
+    q.pop();
+    q.pop();
+    q.display();
+    cout<<q.empty()<<endl;
+    return 0;
+
+}
