@@ -1,20 +1,22 @@
+//5 3 1 4 7 6 2
 #include<bits/stdc++.h>
 using namespace std;
-//5 3 1 4 7 6 2
+void selection_sort(int a[],int n){
+    for(int i=0;i<n;i++){
+        int minidx=i;
+        for(int j=i+1;j<n;j++)
+            if(a[j]<a[minidx]) minidx = j;
+        swap(a[minidx],a[i]);
+    }
+}
 int main(){
-    int n;cin>>n;
+    int n; cin>>n;
     int a[n];
     for(int i=0;i<n;i++) cin>>a[i];
-     
-        for(int i=0;i<n;i++){
-            int minidx = i;
-         
-            for(int j=i+1;j<n;j++)
-              if(a[j]<a[minidx]) minidx = j; // reverse order a[j]>a[minidx]
-               
-               swap(a[i],a[minidx]);
-        }
-     for(int i=0;i<n;i++) cout<<a[i]<<" ";
-     cout<<endl;
-     return 0;
+    
+    selection_sort(a,n);
+    
+    for(int i=0;i<n;i++) cout<<a[i]<<" ";
+    cout<<endl;
+    return 0;
 }
