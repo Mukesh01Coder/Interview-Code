@@ -5,7 +5,7 @@ void selection_sort(int a[],int n){
     for(int i=0;i<n;i++){
         int minidx=i;
         for(int j=i+1;j<n;j++)
-            if(a[j]<a[minidx]) minidx = j;
+            if(a[j]<a[minidx]) minidx = j;// reverse order a[j]>a[minidx];
         swap(a[minidx],a[i]);
     }
 }
